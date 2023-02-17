@@ -4,11 +4,25 @@ const getValueInput = function(inputElement){
     return valueNumber;
 }
 
+const getElementTextById = function(elementId){
+    const elementValueString = document.getElementById(elementId).innerText;
+    const elementValue = parseFloat(elementValueString);
+    return elementValue;
+}
+const setSubTotal = function(){
+    const phoneTotal = getElementTextById('phone-total');
+    const caseTotal = getElementTextById('case-total');
+
+    document.getElementById('sub-total').innerText = phoneTotal + caseTotal;
+}
+
 document.getElementById('first-plus').addEventListener('click', function(){
     const increaseValue = getValueInput('first-input');
     document.getElementById('first-input').value = increaseValue + 1;
     const phoneTotalPrice = parseInt(document.getElementById('first-input').value) * 1219;
     document.getElementById('phone-total').innerText = phoneTotalPrice;
+
+    setSubTotal();
 })
 
 document.getElementById('first-minus').addEventListener('click', function(){
@@ -18,6 +32,8 @@ document.getElementById('first-minus').addEventListener('click', function(){
     }
     const phoneTotalPrice = parseInt(document.getElementById('first-input').value) * 1219;
     document.getElementById('phone-total').innerText = phoneTotalPrice;
+
+    setSubTotal();
 })
 
 document.getElementById('second-plus').addEventListener('click', function(){
@@ -25,6 +41,8 @@ document.getElementById('second-plus').addEventListener('click', function(){
     document.getElementById('second-input').value = increaseValue + 1;
     const caseTotalPrice = parseInt(document.getElementById('second-input').value) * 59;
     document.getElementById('case-total').innerText = caseTotalPrice;
+
+    setSubTotal();
 })
 
 document.getElementById('second-minus').addEventListener('click', function(){
@@ -34,4 +52,6 @@ document.getElementById('second-minus').addEventListener('click', function(){
     }
     const caseTotalPrice = parseInt(document.getElementById('second-input').value) * 59;
     document.getElementById('case-total').innerText = caseTotalPrice;
+
+    setSubTotal();
 })
